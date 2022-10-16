@@ -1,0 +1,4 @@
+markers could be smaller in production
+
+list of all plants marked on map alongside the map. when a plant is 
+clicked/highlighted in this list, the corresponding marker flashes or something
