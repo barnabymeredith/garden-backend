@@ -1,3 +1,4 @@
 env
 node_modules/
 barnabyhm/local_settings.py
+barnabyhm/.env
