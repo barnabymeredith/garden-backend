@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Picture, Marker
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class MarkerSerializer(serializers.ModelSerializer):
 
@@ -7,6 +8,7 @@ class MarkerSerializer(serializers.ModelSerializer):
     description = serializers.CharField(allow_blank=True)
     top = serializers.FloatField()
     left = serializers.FloatField()
+    picture = serializers
 
     class Meta:
         model = Marker
@@ -14,9 +16,20 @@ class MarkerSerializer(serializers.ModelSerializer):
 
 class PictureSerializer(serializers.ModelSerializer):
 
-    image = serializers.ImageField(required=False)
+    name = serializers.CharField(allow_blank=True)
     user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = Picture
-        fields = ['image', 'user']
+        fields = ['name', 'user']
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['name'] = user.name
+        token['email'] = user.email
+
+        return token

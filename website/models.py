@@ -3,11 +3,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Picture(models.Model):
-    image = models.ImageField(upload_to='images/')
+    name = models.CharField(max_length=600, null=True)
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        default=3
+        default=None
     )
 
 class Marker(models.Model):
@@ -15,9 +15,9 @@ class Marker(models.Model):
     description = models.CharField(max_length=120, null=True)
     top = models.FloatField(null=False)
     left = models.FloatField(null=False)
-    #picture = models.ForeignKey(
-    #    Picture,
-    #    on_delete=models.CASCADE,
-    #    default=3
-    #)
+    picture = models.ForeignKey(
+        Picture,
+        on_delete=models.CASCADE,
+        default=None
+    )
     
