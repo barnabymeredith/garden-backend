@@ -14,6 +14,10 @@ class MarkerViewSet(viewsets.ModelViewSet):
     queryset = Marker.objects.all()
     serializer_class = MarkerSerializer
 
+    def get_queryset(self):
+          markers = Marker.objects.filter(picture=self.request.query_params.get('picture'))
+          return markers
+
     def update(self, request, pk=None):
         try:
             marker = Marker.objects.get(pk=pk)

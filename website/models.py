@@ -15,9 +15,5 @@ class Marker(models.Model):
     description = models.CharField(max_length=120, null=True)
     top = models.FloatField(null=False)
     left = models.FloatField(null=False)
-    picture = models.ForeignKey(
-        Picture,
-        on_delete=models.CASCADE,
-        default=None
-    )
+    picture = models.IntegerField(null=False)
     

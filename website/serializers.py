@@ -8,11 +8,11 @@ class MarkerSerializer(serializers.ModelSerializer):
     description = serializers.CharField(allow_blank=True)
     top = serializers.FloatField()
     left = serializers.FloatField()
-    picture = serializers
+    picture = serializers.IntegerField()
 
     class Meta:
         model = Marker
-        fields = ['id', 'name', 'description', 'top', 'left']
+        fields = ['id', 'name', 'description', 'top', 'left', 'picture']
 
 class PictureSerializer(serializers.ModelSerializer):
 
